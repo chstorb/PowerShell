@@ -1,7 +1,7 @@
 # Copyright (c) STC STORB. All rights reserved.
 # Licensed under the MIT License.
 
-$TargetDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules"
+$TargetDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Modules\MyModules"
 if(!(Test-Path -Path $TargetDir))
 {
     New-Item -ItemType "directory" -Path $TargetDir -Force
@@ -11,7 +11,6 @@ Write-Host "Copying files from $($ScriptDir)\MyModules\*.* to $($TargetDir)"
 Copy-Item "$($ScriptDir)\MyModules\*.*" $TargetDir 
 
 $PowerShellProfileCurrentUserCurrentHost = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-Write-Host $PowerShellProfileCurrentUserCurrentHost
 if (!(Test-Path -Path $PowerShellProfileCurrentUserCurrentHost)) {
   New-Item -ItemType File -Path $PowerShellProfileCurrentUserCurrentHost -Force
 }
