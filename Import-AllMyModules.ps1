@@ -2,4 +2,4 @@
 # Licensed under the MIT License.
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-Import-Module -Name  "$($ScriptDir)\Modules\MyModule.psm1" -Verbose
+Install-Module -Name  "$($ScriptDir)\MyModules\MyModule.psm1" -Verbose -Scope CurrentUser
