@@ -20,3 +20,25 @@ function Clear-VSCache
         Remove-Item "$($item.FullName)\*.*"
     }
 }
+
+<#
+.Synopsis
+    Get my settings.
+.Description
+    Read a JSON configuration file as a PowerShell object.
+#>
+function Get-MySettings
+{
+	[CmdletBinding()]
+	Param(
+		[Parameter(Mandatory=$False, Position = 0)]
+		[string] $FileName="mysettings.config"
+    )
+    $MySettingsFile = "$([Environment]::GetFolderPath("ApplicationData"))\$FileName"
+    if(!(Test-Path -Path $MySettingsFile))
+    {
+        '{ "devVm01": { "computerName": "VM01" } }' | Out-File -FilePath $MySettingsFile -Force
+    }
+    $MySettings=Get-Content -Path $MySettingsFile | ConvertFrom-Json
+    return $MySettings
+}
