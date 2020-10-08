@@ -33,3 +33,13 @@ if(Select-String -Path $PowerShellISEProfileCurrentUserCurrentHost -Pattern $Fin
     Add-Content -Path $PowerShellISEProfileCurrentUserCurrentHost -Value $Find
 }
 
+$PowerShellNuGetProfileCurrentUserCurrentHost = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell\NuGet_profile.ps1"
+if (!(Test-Path -Path $PowerShellNuGetProfileCurrentUserCurrentHost)) {
+  New-Item -ItemType File -Path $PowerShellNuGetProfileCurrentUserCurrentHost -Force
+}
+if(Select-String -Path $PowerShellNuGetProfileCurrentUserCurrentHost -Pattern $Find -SimpleMatch -quiet){
+    Write-Host "found"
+}else{
+    Write-Host "not found"
+    Add-Content -Path $PowerShellNuGetProfileCurrentUserCurrentHost -Value $Find
+}
